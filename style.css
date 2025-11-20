@@ -1,0 +1,95 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+ /* PERSON IMAGE – always on top */
+.hero-img {
+    position: relative;
+    z-index: 10;    
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;              /* top:0; right:0; bottom:0; left:0 */
+    width: 100%;
+    height: 100%;          /* match .hero's height */
+    object-fit: cover;     /* keep aspect ratio, crop if needed */
+    opacity: 0;
+    transition: opacity .6s ease .4s;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+/* ORBITS */
+.orbit {
+    position: absolute;
+    z-index: 2;      /* behind image */
+    border-radius: 50%;
+    border: 2px solid #0E6AFF;
+    transform: scale(0.6);
+    opacity: 0;
+    transition: transform .5s ease, opacity .5s ease;
+  }
+  
+/* ICONS */
+.hero-icon {
+    position: absolute;
+    z-index: 30;   /* above EVERYTHING */
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+    --icon-scale: 0.9;              /* base scale */
+    transition: 
+    --icon-scale 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+  animation: float 4s ease-in-out infinite alternate;
+  }
+  
+  .hero-icon:hover {
+    --icon-scale: 1.5;
+  }
+  
+  /* FLOAT ANIMATION */
+  @keyframes float {
+    from {
+      transform: translate(-50%, calc(-50% - 8px)) scale(var(--icon-scale));
+    }
+    to {
+      transform: translate(-50%, calc(-50% + 8px)) scale(var(--icon-scale));
+    }
+  }
+  /* TOOLTIP */
+  .tooltip {
+    position: absolute;
+    z-index: 100;
+    background: #0E6AFF;
+    color: white;
+    padding: 8px 12px;
+  
+    /* NEW: Inter font */
+    font-family: 'Inter', sans-serif;
+  
+    /* NEW: Larger font size */
+    font-size: 14px;         /* increase or set 15px if you want bigger */
+    font-weight: 400;
+  
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+  
+    /* neutral default transform — overwritten on hover */
+    transform: translate(-50%, -50%);
+    transition: opacity .25s ease, transform .25s ease;
+    white-space: nowrap;      /* prevent wrapping */
+  }
+  
+  
